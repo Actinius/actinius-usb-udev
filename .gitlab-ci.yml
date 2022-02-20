@@ -1,0 +1,22 @@
+image: ubuntu:20.04
+
+job:
+  script:
+    - PACKAGE_FOLDER="actinius-usb-udev"
+    - DEB_PACKAGE_NAME=$(grep Package "${PACKAGE_FOLDER}/DEBIAN/control" | awk '{print $2}')
+    - DEB_VERSION=$(grep Version "${PACKAGE_FOLDER}/DEBIAN/control" | awk '{print $2}')
+    - DEB_ARCHITECTURE=$(grep Architecture "${PACKAGE_FOLDER}/DEBIAN/control" | awk '{print $2}')
+    - FILENAME="${DEB_PACKAGE_NAME}_${DEB_VERSION}-${DEB_ARCHITECTURE}"
+    - DEB_FILENAME="${FILENAME}.deb"
+    - SHA_FILENAME="${FILENAME}.sha"
+    - MD5_FILENAME="${FILENAME}.md5"
+    - chmod -R 755 "${PACKAGE_FOLDER}/DEBIAN"
+    - dpkg-deb --root-owner-group -b "${PACKAGE_FOLDER}" "${DEB_FILENAME}"
+    - md5sum "${DEB_FILENAME}" > "${MD5_FILENAME}"
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - "*.deb"
+      - "*.md5"
+  only:
+    - master
