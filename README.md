@@ -9,7 +9,7 @@ https://www.actinius.com
 For Debian-based systems, download the latest `.deb` release from https://github.com/actinius/actinius-usb-udev/releases and install using the following command:
 
 ```
-sudo dpkg -i actinius-usb-udev_1.0.0-all.deb
+sudo dpkg -i actinius-usb-udev_1.1.0-all.deb
 ```
 
 ## Important Note

@@ -1,5 +1,5 @@
 Package: actinius-usb-udev
-Version: 1.0.0
+Version: 1.1.0
 Architecture: all
 Maintainer: Alex Tsamakos <alex@actinius.com>
 Description: udev rules for USB-enabled devices by Actinius (https://www.actinius.com)
